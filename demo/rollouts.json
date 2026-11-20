@@ -1,0 +1,66 @@
+[
+  {
+    "grid": "H-01",
+    "start_date": "2025-09-01",
+    "intensity": "high",
+    "paused_from": "",
+    "paused_to": "",
+    "end_date": ""
+  },
+  {
+    "grid": "H-02",
+    "start_date": "2025-10-15",
+    "intensity": "low",
+    "paused_from": "",
+    "paused_to": "",
+    "end_date": ""
+  },
+  {
+    "grid": "H-03",
+    "start_date": "2025-12-01",
+    "intensity": "high",
+    "paused_from": "2026-01-05",
+    "paused_to": "2026-01-25",
+    "end_date": ""
+  },
+  {
+    "grid": "H-04",
+    "start_date": "2026-02-01",
+    "intensity": "medium",
+    "paused_from": "",
+    "paused_to": "",
+    "end_date": "2026-05-15"
+  },
+  {
+    "grid": "H-05",
+    "start_date": "2026-03-01",
+    "intensity": "high",
+    "paused_from": "",
+    "paused_to": "",
+    "end_date": ""
+  },
+  {
+    "grid": "H-06",
+    "start_date": "",
+    "intensity": "none",
+    "paused_from": "",
+    "paused_to": "",
+    "end_date": ""
+  },
+  {
+    "grid": "H-07",
+    "start_date": "2026-06-01",
+    "intensity": "high",
+    "paused_from": "",
+    "paused_to": "",
+    "end_date": ""
+  },
+  {
+    "grid": "H-08",
+    "start_date": "2026-04-01",
+    "intensity": "low",
+    "paused_from": "",
+    "paused_to": "",
+    "end_date": ""
+  }
+]

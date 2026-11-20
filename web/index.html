@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分阶段服务措施效果评估</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>分阶段服务措施效果评估</h1>
+    <p class="sub">定方案 → 看对照资格 → 出区间 → 决定扩面、调整或继续观察</p>
+  </div>
+</header>
+<nav class="wrap tabs" id="tabs">
+  <button data-view="protocol" class="active">1 预设方案</button>
+  <button data-view="design">2 对照资格与覆盖</button>
+  <button data-view="result">3 估计与结论</button>
+  <button data-view="data">4 资料与录入</button>
+</nav>
+<main class="wrap">
+  <div id="banner" class="banner" hidden></div>
+
+  <section id="view-protocol" class="view">
+    <div class="grid2">
+      <div>
+        <h2>冻结前必须确定的口径</h2>
+        <p class="hint">冻结后仍可修订，但每次修订都要写明理由，系统会列出修改了哪些字段、哪些旧结论受影响。不允许因为某个网格结果不理想而换口径、换时段或筛掉网格。</p>
+        <form id="protocol-form">
+          <label>方案名称<input name="title" required></label>
+          <label>估计目标<input name="estimand"></label>
+          <label>结果口径
+            <select name="outcome_measure"><option value="timely_rate">按期办结率（已成熟事项中按期办结的比例）</option></select>
+          </label>
+          <label>口径定义<input name="outcome_definition"></label>
+          <div class="row">
+            <label>比较时段开始<input type="month" name="comparison_start" required></label>
+            <label>比较时段结束<input type="month" name="comparison_end" required></label>
+            <label>资料截至<input type="month" name="data_through" required></label>
+          </div>
+          <div class="row">
+            <label>启动当月处理
+              <select name="start_month_policy">
+                <option value="exclude">排除（过渡月，不当作整月实施）</option>
+                <option value="include">计入实施</option>
+              </select>
+            </label>
+            <label>不足月/部分实施
+              <select name="partial_exposure_policy">
+                <option value="exclude">排除</option>
+                <option value="include_as_treated">按暴露天数折算计入实施</option>
+              </select>
+            </label>
+            <label>暂停期
+              <select name="paused_policy">
+                <option value="exclude">排除</option>
+                <option value="count_as_unexposed">计为未暴露</option>
+              </select>
+            </label>
+          </div>
+          <div class="row">
+            <label>对照来源
+              <select name="control_source">
+                <option value="any_not_yet_started">任何尚未启动的网格</option>
+                <option value="never_started">仅始终未启动的网格</option>
+              </select>
+            </label>
+            <label>合并权重
+              <select name="weighting">
+                <option value="population">按人口 × 成熟事项</option>
+                <option value="equal">网格等权</option>
+              </select>
+            </label>
+            <label>同期冲击
+              <select name="shock_policy">
+                <option value="flag">列出并做敏感性（不剔除）</option>
+                <option value="exclude">排除冲击月份（敏感性用）</option>
+              </select>
+            </label>
+          </div>
+          <div class="row">
+            <label>置信水平<input type="number" name="confidence_level" min="0.5" max="0.99" step="0.01"></label>
+            <label>每组最少成熟事项<input type="number" name="minimum_matured_per_arm" min="0" step="1"></label>
+            <label>最少可比月份<input type="number" name="minimum_control_months" min="0" step="1"></label>
+            <label>最少实施网格<input type="number" name="minimum_treated_grids" min="0" step="1"></label>
+          </div>
+          <div class="row">
+            <label>最大可接受区间宽度（比例）<input type="number" name="max_ci_width" min="0.01" max="1" step="0.01"></label>
+            <label>期末成熟下限（比例）<input type="number" name="mature_completion_floor" min="0.1" max="1" step="0.01"></label>
+            <label class="check"><input type="checkbox" name="require_common_months"> 仅保留同月有实施网格的对照月份</label>
+          </div>
+          <label>预设说明<textarea name="notes" rows="2" placeholder="例如：启动前 3 个月的对照月份单独标注"></textarea></label>
+          <label>冻结/修订理由（必填）<input name="reason" required placeholder="例如：初次冻结，先固定口径再看结果"></label>
+          <div class="actions">
+            <button type="button" id="load-draft">载入草案</button>
+            <button type="submit" class="primary">冻结为新版本</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <h2>版本与修订影响</h2>
+        <div id="protocol-versions" class="stack"></div>
+        <h3>最近一次修订</h3>
+        <div id="protocol-diff" class="stack muted"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-design" class="view" hidden>
+    <div class="toolbar">
+      <button id="run-analysis" class="primary">按冻结方案计算</button>
+      <span id="design-status" class="muted"></span>
+    </div>
+    <div id="design-body"></div>
+  </section>
+
+  <section id="view-result" class="view" hidden>
+    <div id="result-body"></div>
+  </section>
+
+  <section id="view-data" class="view" hidden>
+    <h2>资料核查</h2>
+    <div id="data-issues" class="stack"></div>
+    <p class="muted" id="empty-rule"></p>
+    <h2>追加结果观测</h2>
+    <form id="outcome-form" class="inline-form">
+      <label>网格<input name="grid" required></label>
+      <label>月份<input type="month" name="month" required></label>
+      <label>受理<input type="number" name="received" min="0" required></label>
+      <label>已成熟<input type="number" name="matured" min="0" required></label>
+      <label>按期<input type="number" name="timely" min="0" required></label>
+      <button type="submit">追加</button>
+    </form>
+    <h2>登记同期冲击</h2>
+    <form id="shock-form" class="inline-form">
+      <label>网格<input name="grid" required></label>
+      <label>月份<input type="month" name="month" required></label>
+      <label>类型<input name="type" required placeholder="weather / holiday …"></label>
+      <label>强度
+        <select name="intensity"><option>low</option><option>medium</option><option>high</option></select>
+      </label>
+      <button type="submit">登记</button>
+    </form>
+    <h2>原始资料</h2>
+    <div id="raw-tables"></div>
+  </section>
+</main>
+<footer class="wrap muted">
+  结论为同期差异的一次估计，不是已证实的因果；报告始终列出不确定性、适用范围与无法区分的同期因素。
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>

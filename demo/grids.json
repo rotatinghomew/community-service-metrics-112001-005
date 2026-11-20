@@ -1,0 +1,42 @@
+[
+  {
+    "id": "H-01",
+    "population": 1500,
+    "area_type": "urban"
+  },
+  {
+    "id": "H-02",
+    "population": 820,
+    "area_type": "mixed"
+  },
+  {
+    "id": "H-03",
+    "population": 640,
+    "area_type": "rural"
+  },
+  {
+    "id": "H-04",
+    "population": 1100,
+    "area_type": "urban"
+  },
+  {
+    "id": "H-05",
+    "population": 460,
+    "area_type": "rural"
+  },
+  {
+    "id": "H-06",
+    "population": 700,
+    "area_type": "mixed"
+  },
+  {
+    "id": "H-07",
+    "population": 980,
+    "area_type": "urban"
+  },
+  {
+    "id": "H-08",
+    "population": 530,
+    "area_type": "rural"
+  }
+]

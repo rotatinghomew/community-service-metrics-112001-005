@@ -1,0 +1,26 @@
+[
+  {
+    "grid": "H-02",
+    "month": "2026-03",
+    "type": "local_event",
+    "intensity": "high"
+  },
+  {
+    "grid": "H-04",
+    "month": "2026-05",
+    "type": "weather",
+    "intensity": "medium"
+  },
+  {
+    "grid": "H-06",
+    "month": "2026-02",
+    "type": "holiday",
+    "intensity": "low"
+  },
+  {
+    "grid": "H-07",
+    "month": "2026-01",
+    "type": "system_change",
+    "intensity": "medium"
+  }
+]
