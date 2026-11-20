@@ -1,0 +1,22 @@
+[
+  {
+    "id": "G-A",
+    "population": 1200,
+    "area_type": "urban"
+  },
+  {
+    "id": "G-B",
+    "population": 640,
+    "area_type": "rural"
+  },
+  {
+    "id": "G-C",
+    "population": 910,
+    "area_type": "mixed"
+  },
+  {
+    "id": "G-D",
+    "population": 380,
+    "area_type": "rural"
+  }
+]

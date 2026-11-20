@@ -1,0 +1,44 @@
+[
+  {
+    "grid": "G-A",
+    "month": "2026-01",
+    "received": 18,
+    "timely": 12,
+    "matured": 16
+  },
+  {
+    "grid": "G-A",
+    "month": "2026-02",
+    "received": 22,
+    "timely": 18,
+    "matured": 20
+  },
+  {
+    "grid": "G-B",
+    "month": "2026-02",
+    "received": 9,
+    "timely": 5,
+    "matured": 8
+  },
+  {
+    "grid": "G-B",
+    "month": "2026-03",
+    "received": 17,
+    "timely": 8,
+    "matured": 12
+  },
+  {
+    "grid": "G-C",
+    "month": "2026-04",
+    "received": 14,
+    "timely": 9,
+    "matured": 13
+  },
+  {
+    "grid": "G-D",
+    "month": "2026-04",
+    "received": 6,
+    "timely": 4,
+    "matured": 3
+  }
+]

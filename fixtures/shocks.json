@@ -1,0 +1,20 @@
+[
+  {
+    "grid": "G-A",
+    "month": "2026-02",
+    "type": "weather",
+    "intensity": "high"
+  },
+  {
+    "grid": "G-B",
+    "month": "2026-03",
+    "type": "local_event",
+    "intensity": "medium"
+  },
+  {
+    "grid": "G-C",
+    "month": "2026-04",
+    "type": "holiday",
+    "intensity": "medium"
+  }
+]
